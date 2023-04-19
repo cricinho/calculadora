@@ -1,137 +1,154 @@
-print("Biemvemidos a la calculadora")
-print("Para salir escribe slir")
-print("Las operaciones son: suma, multi, div, resta")
+print("Welcome to the calculator")
+print("To exit type exit")
+print("The opprtations is: addition, multi, div, sub")
 
-def calculadora(verbose=True):
-    first_number = "" 
-
+def calculator(verbose=True):
+    firstt = ""
 
     while True :
-        if isinstance(first_number, str): #Si es str entra el if
-            first_number = input ("Ingresa un numero: ")
 
-            if first_number.lower() == "salir":
+        if isinstance(firstt, str): #Si es str entra el if
+            firstt = first()
+            if firstt == "exit":
                 break
-        
-        error_first(first_number)
 
-        first_number = int(first_number)
+        oppp = op()
 
-        op = input("Ingresa una operacion: ")
 
-        if op.lower() == "salir":
+        if oppp == "exit":
             break
-
 
         seecond = second()
 
-        datos(op, first_number, seecond, verbose=verbose)
+        if seecond == "exit":
+            break
 
-        first_number = datos(op, first_number, seecond)
+        firstt = data(oppp, firstt, seecond, verbose=verbose)
+        if firstt == "exit":
+            break
+
+def first():
+    first_number = input ("Insert the first number: ")
+    if first_number.lower() == "exit":
+        return first_number    
+    else:
+        error_firstt = error_first(first_number)
+        return error_firstt
+    
+def op():
+    opp = input("Insert an operation ")
+
+    if opp.lower() == "exit":
+        return opp
+
+    if opp == "addition":
+        return opp
+    
+    elif opp == "multi":
+        return opp
+    
+    elif opp == "sub":
+        return opp
+    
+    elif opp == "div":
+        return opp
+    
+    else:
+        print("Operacion no valida.\n Vuelve a intentarlo")
+        return op()
 
 
 def second():
-
-    while True:
-        second_number = input("Ingresa el segundo numero: ")
-        if second_number.lower() == "salir":
-            break            
+    second_number = input("Insert the second number: ")
+    if second_number.lower() == "exit":
+        return second_number  
+    else:          
         error = error_second(second_number)
         return error
 
 
-def datos (op, first_number, second_number, verbose=True):
+def data(oppp, first_number, second_number, verbose=True):
     
-    if op.lower() == "suma":
+    if oppp.lower() == "addition":
         first_number += second_number
         if verbose:
-            print("El resultado de la suma es :  ", first_number)
+            print("The result of the addition is:  ", first_number)
+            return first_number
 
-    elif op.lower() == "multi":
+    elif oppp.lower() == "multi":
         first_number *= second_number
         if verbose:
-            print("El resultado de la multi es :  ", first_number)
+            print("The result of the multi is:  ", first_number)
+            return first_number
 
-    elif op.lower() == "div":
+    elif oppp.lower() == "div":
 
-        try:
-            first_number /= second_number
 
-        except:
-            print("La division entre cero no esta definida") 
-            calculadora()
-        
+        divv = error_div(first_number, second_number)
+        if divv == "exit":
+            return divv
         if verbose:
-            print("El resultado de la div es :  ", first_number)
+            print("The result of the div is: ", divv)
+            return divv
 
-    elif op.lower() == "resta":
+    elif oppp.lower() == "sub":
         first_number -= second_number
         if verbose:
-            print("El resultado de la resta es :  ", first_number)
+            print("The result of the subtraction is: ", first_number)
+            return first_number
+
 
     else:
-        print("Operacion no valida")
+        print("Invalid transaction")
         
     if verbose:
-        print(f"El resultado es {first_number}")
-
-    return first_number
+        print(f"The result is: {first_number}")
+        
+        return first_number
 
 
 def error_first(first_number):
     try:
-        
-        first_number = int(first_number)
+        return int(first_number)
 
     except:
-        
-        print("Se ha producido un error no ingresaste un numero.\n Vuelve a intentarlo")
-        calculadora()
+        print("An error has ocurred, you did not enter a number.\n Try again")
+        return first()
 
 
 def error_second(second_number):
-
     try:
         return int(second_number) 
     
     except:
-        print("Se ha producido un error no ingresaste un numero \n Vuelve a intentarlo")
+        print("An error has ocurred, you did not enter a number.\n Try again")
         return second()
 
 
+def error_div (first_number, second_number):
+    try:
+        first_number /= second_number
+        return first_number
+    
+    except:
+            print("Division by zero is not defined") 
+            second_number = second()
 
-# def errorop(op):
-
-    # try:
-  
-        # op = "suma"      
-        # op = "multi"
-        # op = "div"
-        # op = "resta"
-
-    # except:
-        # print("No elejiste una operacion")
-        # calculadora()
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if second_number == "exit":
+                return first_number
+            
+            first_number /= second_number
+            return first_number
+    
+    
 if __name__ == '__main__':
-    calculadora()
+    calculator()
 
 
-        
+        # calculadora
+# calculadora
+# calculadora
+# calculadora
+# calculadora
+# calculadora
+# calculadora
